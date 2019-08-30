@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+*{
+    margin:  0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+    overflow: hidden;
+}
+
+.form-group{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    margin-bottom: 17px;
+
+    > *{
+        margin:4px;
+    }
+
+    .form-item-label{
+        color:#000;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .form-item-control{
+        text-align: center;
+
+        .form-item{
+            width: 100%;
+        }
+        .form-item-input{
+            padding:17px;
+            font-size:17px;
+            color:#333;
+            border-radius: 3px;
+            border-width: 0px;
+            border-bottom: 1px solid #ccc;
+            
+            &:focus{
+                outline: none;
+                border-bottom: 1px solid #883D86;
+            }
+        }
+        .form-item-button{
+            color:#fff;
+            font-weight: bolder;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 20px;
+            padding:13px;
+            font-family: 'Open Sans', sans-serif;
+            background: #F44336;
+            border-radius: 10px;
+            &:hover{
+                cursor: pointer;
+                background:linear-gradient(90deg, rgb(248, 98, 87), #F44336, rgb(248, 98, 87));
+            }
+        }
+    }
+    .form-item-error{
+        display: flex;
+        align-items: center;
+        > img{
+            margin-right: 7px;
+        }
+
+    }
+}

@@ -1,0 +1,13 @@
+<header class="nav-bar">
+    <div class="nav-bar-logo">
+        <h3>HELLO.TN</h3>
+    </div>
+
+    <div class="nav-bar-items">
+        <ul>
+            <li  [ngClass]="{'active' : isMessagePath }" [routerLink]="['/messages']">Messages</li>
+            <li  [ngClass]="{'active' : isSettingPath }" [routerLink]="['/setting']">Settings</li>
+            <li (click)="logout()" >Logout</li>
+        </ul>
+    </div>
+</header>

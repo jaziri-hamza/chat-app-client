@@ -1,0 +1,49 @@
+.main{
+    margin-top:7px;
+    overflow-y: auto;
+    h4{
+        text-align: center;
+        color:#6e6e6eda;
+        padding:11px;
+        border-bottom: 1px solid #6e6e6e6a;
+        border-top: 1px solid #6e6e6e6a;
+    }
+    .items{
+        
+        cursor: pointer;
+        .item{
+            border-bottom: 1px solid rgb(236, 236, 236);
+            display:flex;
+            padding:7px;
+            align-items: center;
+            &:hover{
+                background:rgb(226, 226, 226);
+            }
+            .item-image{
+                margin-right: 15px;
+            }
+
+            .item-detail{
+                width:100%;
+
+                .item-name{
+                    font-weight: bold;
+                    font-size:17px;
+                }
+
+                .item-last-msg{
+                    color: rgb(141, 141, 141);
+                    display:flex;
+                    justify-content: space-between;
+
+                    >div:last-child{
+                        font-weight: 400;
+                    }
+                }
+
+               
+
+            }
+        }
+    }
+}

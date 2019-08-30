@@ -1,0 +1,142 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-bottom: 10px;
+    .header{
+        background: linear-gradient(0deg, rgba(204, 204, 204, 0.39) 10%, #fff 70%);
+        padding:10px;
+        color:#333;
+        padding-left:15px;
+        border-bottom:1px solid rgba(0, 0, 0, 0.363);
+    }
+
+    .body{
+        height: 100%;
+        overflow-y: scroll;
+        .message{
+            position: relative;
+            margin:10px;
+            .message-rcv{
+                display:flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: flex-start;
+                .message-sender{
+                    &:hover ~ .message-date{
+                        display: block;
+                        
+                    }
+                }
+                .message-body{
+                    margin-left:7px;
+                    span{
+                        background:rgb(245, 244, 244);
+                        color:black;
+                        padding:7px;
+                        border-radius: 7px;
+                        display:block;
+                        margin-top:3px;
+                        max-width: 300px;
+                        &:first-child{
+                            margin-top:0px;
+                        }
+                    }
+                    
+                }
+                .message-date{
+                    position: absolute;
+                    top:-30px;
+                    left:35px;
+                    background:black;
+                    color:white;
+                    font-size:12px;
+                    padding:7px;
+                    border-radius:10px;
+                    display: none;
+                }
+
+            }
+            .message-send{
+                display:flex;
+                flex-direction: row-reverse;
+                justify-content: flex-start;
+                align-items: flex-start;
+                .message-sender{
+                    &:hover ~ .message-date{
+                        display: block;
+                        
+                    }
+                }
+                .message-body{
+                    margin-right:7px;
+                    display:flex;
+                    flex-direction:column;
+                    span{
+                        background:red;
+                        color:white;
+                        padding:7px;
+                        border-radius: 7px;
+                        display:block;
+                        margin-top:3px;
+                        max-width: 300px;
+                        &:first-child{
+                            margin-top:0px;
+                        }
+                    }
+                }
+                .message-date{
+                    background:black;
+                    color:white;
+                    position: absolute;
+                    top:-30px;
+                    right:35px;
+                    font-size:12px;
+                    padding:7px;
+                    margin-right:7px;
+                    border-radius:10px;
+                    display:none;
+                }
+            }
+        }
+
+    }
+
+    .footer{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-top:15px;
+        > div:first-child{
+            width:70%;
+            textarea{
+                width:100%;
+                height: 100%;
+                resize: none;
+                overflow-y:hidden;
+                height: 70px;
+                padding:15px;
+                border-width: 0px;
+                background:#fff;
+                border-radius: 10px;
+                outline: none;
+            }
+            
+        }
+
+        button{
+            padding:10px;
+            padding-left:20px;
+            padding-right: 20px;
+            border-radius: 3px;
+            background:green;
+            cursor:pointer;
+            color:white;
+            border-width: 0px;
+            outline:none;
+            font-weight: bold;
+        }
+        background:rgb(230, 230, 230);
+    }
+}

@@ -1,0 +1,10 @@
+version: "3"
+services:
+  client:
+    build: .
+    working_dir: /app
+    volumes: 
+      - ./app:/app
+    ports:
+      - 4200:4200
+    tty: true
