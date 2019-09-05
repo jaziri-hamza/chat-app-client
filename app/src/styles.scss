@@ -60,6 +60,9 @@ body{
                 cursor: pointer;
                 background:linear-gradient(90deg, rgb(248, 98, 87), #F44336, rgb(248, 98, 87));
             }
+            &:disabled{
+                opacity: .3;
+            }
         }
     }
     .form-item-error{

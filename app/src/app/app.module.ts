@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UnauthenticatedModule } from './unauthenticated/unauthenticated.module';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
-import { MessagesModule } from './authenticated/messages/messages.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { MessagesModule } from './authenticated/messages/messages.module';
     AppRoutingModule,
     UnauthenticatedModule,
     AuthenticatedModule,
-    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

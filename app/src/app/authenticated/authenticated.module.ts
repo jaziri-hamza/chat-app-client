@@ -14,12 +14,7 @@ const routes: Routes = [
     component: AuthenticatedComponent,
     children: [
       {
-        path:'',
-        pathMatch: 'full',
-        redirectTo: 'messages'
-      },
-      {
-        path: 'messages',
+        path: '',
         loadChildren: './messages/messages.module#MessagesModule'
       },
       {

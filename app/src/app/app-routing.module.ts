@@ -4,13 +4,15 @@ import { IsAuthGuard } from './is-auth.guard';
 
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   loadChildren: './unauthenticated/unauthenticated.module#UnauthenticatedModule'
-  // },
   {
     path: '',
-    loadChildren: './authenticated/authenticated.module#AuthenticatedModule'
+    loadChildren: './unauthenticated/unauthenticated.module#UnauthenticatedModule',
+    canActivate: [IsAuthGuard]
+  },
+  {
+    path: 'messages',
+    loadChildren: './authenticated/authenticated.module#AuthenticatedModule',
+    canActivate: [IsAuthGuard]
   }
 ];
 

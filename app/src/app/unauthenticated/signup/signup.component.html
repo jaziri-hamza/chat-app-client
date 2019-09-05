@@ -3,16 +3,16 @@
             <h1> SignUp</h1>
         </header>
         
-        <form>
+        <form [formGroup]="form" (submit)="onSignUp()">
     
             <div class="form-group">
                 <div class="form-item-label">
                     Username:
                 </div>
                 <div class="form-item-control">
-                    <input type="text" autofocus class="form-item form-item-input" placeholder="Username">
+                    <input formControlName='username' type="text" autofocus class="form-item form-item-input" placeholder="Username">
                 </div>
-                <div class="form-item-error">
+                <div *ngIf="form.controls.username.invalid && form.controls.username.dirty" class="form-item-error">
                     <img src="/assets/icons/error.png" width="20px" height="20px">
                     <span>Invalide username</span>
                 </div>
@@ -23,9 +23,9 @@
                     Email:
                 </div>
                 <div class="form-item-control">
-                    <input type="text" autofocus class="form-item form-item-input" placeholder="Email">
+                    <input formControlName="email" type="text" autofocus class="form-item form-item-input" placeholder="Email">
                 </div>
-                <div class="form-item-error">
+                <div *ngIf="form.controls.email.invalid && form.controls.email.dirty" class="form-item-error">
                     <img src="/assets/icons/error.png" width="20px" height="20px">
                     <span>Invalide email</span>
                 </div>
@@ -36,9 +36,9 @@
                     Password:
                 </div>
                 <div class="form-item-control">
-                    <input type="text" autofocus class="form-item form-item-input" placeholder="Password">
+                    <input  formControlName="password" type="text" autofocus class="form-item form-item-input" placeholder="Password">
                 </div>
-                <div class="form-item-error">
+                <div  *ngIf="form.controls.password.invalid && form.controls.password.dirty" class="form-item-error">
                     <img src="/assets/icons/error.png" width="20px" height="20px">
                     <span>Invalide password</span>
                 </div>
@@ -49,9 +49,9 @@
                     First name:
                 </div>
                 <div class="form-item-control">
-                    <input type="text" autofocus class="form-item form-item-input" placeholder="First name">
+                    <input formControlName="firstName" type="text" autofocus class="form-item form-item-input" placeholder="First name">
                 </div>
-                <div class="form-item-error">
+                <div  *ngIf="form.controls.firstName.invalid && form.controls.firstName.dirty" class="form-item-error">
                     <img src="/assets/icons/error.png" width="20px" height="20px">
                     <span>Invalide First name</span>
                 </div>
@@ -62,23 +62,102 @@
                     Last name:
                 </div>
                 <div class="form-item-control">
-                    <input type="text" autofocus class="form-item form-item-input" placeholder="Last name">
+                    <input formControlName="lastName" type="text" autofocus class="form-item form-item-input" placeholder="Last name">
                 </div>
-                <div class="form-item-error">
+                <div  *ngIf="form.controls.lastName.invalid && form.controls.lastName.dirty" class="form-item-error">
                     <img src="/assets/icons/error.png" width="20px" height="20px">
                     <span>Invalide Last name</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item-label">
+                    Birthday:
+                </div>
+                <div class="form-item-control">
+                    <input formControlName="birthday" type="text" autofocus class="form-item form-item-input" placeholder="DD/MM/YYYY">
+                </div>
+                <div  *ngIf="form.controls.birthday.invalid && form.controls.birthday.dirty" class="form-item-error">
+                    <img src="/assets/icons/error.png" width="20px" height="20px">
+                    <span>Invalide Date</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item-label">
+                    Sex:
+                </div>
+                <div class="form-item-control">
+                    <select formControlName="sex" type="text" autofocus class="form-item form-item-input">
+                        <option value="" disabled=true>Sex</option>
+                        <option value="1">Homme</option>
+                        <option Value="0">Femme</option>
+                    </select>
+                </div>
+                <div  *ngIf="form.controls.sex.invalid && form.controls.sex.dirty" class="form-item-error">
+                    <img src="/assets/icons/error.png" width="20px" height="20px">
+                    <span>Invalide Date</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item-label">
+                    Country:
+                </div>
+                <div class="form-item-control">
+                    <input formControlName="country" type="text" autofocus class="form-item form-item-input" placeholder="Country">
+                </div>
+                <div  *ngIf="form.controls.country.invalid && form.controls.country.dirty" class="form-item-error">
+                    <img src="/assets/icons/error.png" width="20px" height="20px">
+                    <span>Invalide Country</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-item-label">
+                    Town:
+                </div>
+                <div class="form-item-control">
+                    <input formControlName="town" type="text" autofocus class="form-item form-item-input" placeholder="Town">
+                </div>
+                <div  *ngIf="form.controls.town.invalid && form.controls.town.dirty" class="form-item-error">
+                    <img src="/assets/icons/error.png" width="20px" height="20px">
+                    <span>Invalide Town</span>
                 </div>
             </div>
     
            <div class="form-group">
                <div class="form-item-control">
-                    <button type="submit" class="form-item form-item-button">Sign Up</button>
+                    <button type="submit" [disabled]="form.invalid" class="form-item form-item-button">Sign Up</button>
                </div>
-                <div class="form-item-error">
+               <div *ngIf="startRequest" class="form-item-error">
+                    <img src="/assets/icons/loading.gif" width="20px" height="20px">
+                    <span style="color:red;">Loding ...</span>
+                </div>
+
+                <div *ngIf="startRequest" class="form-item-error">
+                    <img src="/assets/icons/loading.gif" width="20px" height="20px">
+                    <span style="color:red;">Loding ...</span>
+                </div>
+
+                <div *ngIf="endRequest && okRequest" class="form-item-error">
+                    <img src="/assets/icons/ok.png" width="20px" height="20px">
+                    <span style="color:red;">Check ur mail for verif your account</span>
+                </div>
+
+                <div *ngIf="endRequest && errorRequest" class="form-item-error">
+                    <img src="/assets/icons/error.png" width="20px" height="20px">
+                    <span style="color:red;">Check ur inputs</span>
+                </div>
+                
+
+                <!-- <div *ngIf="form.invalid && form.touched" class="form-item-error">
                     <img src="/assets/icons/error.png" width="20px" height="20px">
                     <span>Username or password invalid</span>
-                </div>
+                </div> -->
            </div>
+
+           
     
             
     

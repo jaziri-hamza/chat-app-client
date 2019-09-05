@@ -3,16 +3,16 @@
         <h1> LogIn</h1>
     </header>
     
-    <form>
+    <form [formGroup]="form" (submit)="onLogin()">
 
         <div class="form-group">
             <div class="form-item-label">
                 Username:
             </div>
             <div class="form-item-control">
-                <input type="text" autofocus class="form-item form-item-input" placeholder="Username">
+                <input  formControlName="username" type="text" autofocus class="form-item form-item-input" placeholder="Username">
             </div>
-            <div class="form-item-error">
+            <div *ngIf="form.controls.username.invalid && form.controls.username.dirty" class="form-item-error">
                 <img src="/assets/icons/error.png" width="20px" height="20px">
                 <span>Invalide username</span>
             </div>
@@ -23,9 +23,9 @@
                 Password:
             </div>
             <div class="form-item-control">
-                <input type="text" autofocus class="form-item form-item-input" placeholder="Password">
+                <input formControlName="password" type="text" autofocus class="form-item form-item-input" placeholder="Password">
             </div>
-            <div class="form-item-error">
+            <div *ngIf="form.controls.password.invalid && form.controls.password.dirty" class="form-item-error">
                 <img src="/assets/icons/error.png" width="20px" height="20px">
                 <span>Invalide password</span>
             </div>
@@ -33,9 +33,9 @@
 
        <div class="form-group">
            <div class="form-item-control">
-                <button type="submit" class="form-item form-item-button">Login</button>
+                <button [disabled]="form.invalid" type="submit" class="form-item form-item-button">Login</button>
            </div>
-            <div class="form-item-error">
+            <div *ngIf="errorLogin" class="form-item-error">
                 <img src="/assets/icons/error.png" width="20px" height="20px">
                 <span>Username or password invalid</span>
             </div>

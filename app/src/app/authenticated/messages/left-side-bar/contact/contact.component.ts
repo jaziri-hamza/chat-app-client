@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactService } from './contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  contactService: ContactService;
+
+  constructor(
+    contactService: ContactService
+  ) {
+    this.contactService = contactService;
+  }
 
   ngOnInit() {
+    this.contactService.loadContact();
   }
+
+
 
 }
