@@ -1,123 +1,17 @@
 <div class="main">
         <h4>Favorites</h4>
             <div class="items">
-        
-                <div class="item">
+                <!--sfq -->
+                <div *ngFor="let fav of favoriteService.favorites" class="item">
                     <div class="item-image">
                         <img src="/assets/icons/contact.png" width="50" height="50">
                     </div>
                     <div class="item-name">
-                        hazma jaziri
+                        {{fav.firstName}} {{fav.lastName}}
+                        
                     </div>    
                 </div>
-        
-                <!-- delete -->
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <div class="item">
-                    <div class="item-image">
-                        <img src="/assets/icons/contact.png" width="50" height="50">
-                    </div>
-                    <div class="item-name">
-                        hazma jaziri
-                    </div>    
-                </div>
-                <!-- delete -->
-        
+                
             </div>
         
         </div>
