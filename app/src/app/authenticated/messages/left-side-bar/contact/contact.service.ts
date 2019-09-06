@@ -35,18 +35,20 @@ export class ContactService {
   }
 
 
-  addToFavorite(id: string){
-    this.favoriteService.postFavorite(id);
+  addToFavorite(id: string, index: number){
+    this.favoriteService.postFavorite(id, index);
+    this._contacts[index].favorite = !this._contacts[index].favorite;
   }
+
+ 
 
 
 
 }
 
 class ContactModel{
-  contact: [{
     firstName: string;
     lastName: string;
     _id: string;
-  }]
+    favorite: boolean;
 }

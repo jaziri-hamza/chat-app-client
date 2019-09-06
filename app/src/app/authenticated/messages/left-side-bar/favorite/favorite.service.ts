@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthenticatedService } from 'src/app/authenticated.service';
 import { HttpClient } from '@angular/common/http';
 import { Api } from 'src/app/Api';
+import { ContactService } from '../contact/contact.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class FavoriteService {
     });
   }
 
-  postFavorite(id: string){
+  postFavorite(id: string, index: number){
     this.http.post<any>(Api.entryPoint+'favorites/'+id, {}, Api.httpOptions)
     .toPromise().then( res => {
       let result = <any> (({favorite}) => ({favorite}))(res);

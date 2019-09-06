@@ -3,14 +3,17 @@
     <div class="items">
         <!-- will be array inside array -->
         <!-- work with foreach wor just for inside for-->
-        <div *ngFor="let contact of contactService.contacts" (click)="contactService.addToFavorite(contact._id)" class="item">
+        <div *ngFor="let contact of contactService.contacts; let i = index" (click)="contactService.addToFavorite(contact._id, i)" class="item">
             <div class="item-image">
                 <img src="/assets/icons/contact.png" width="50" height="50">
             </div>
             <div class="item-name">
                 {{ contact.firstName }}
                 {{ contact.lastName }}
-            </div>    
+            </div>
+            <div *ngIf="contact.favorite">
+                <img src="/assets/icons/star.png" width="20"height="20">
+            </div>
         </div>
 
     </div>
