@@ -4,19 +4,19 @@
     <div class="items">
 
 
-        <div *ngFor="let chat of chatService.chats" class="item">
+        <div *ngFor="let chat of chatService.chats"  (click)="loadMessageBody(chat.users[0]._id)" class="item">
             <div class="item-image">
                 <img src="/assets/icons/contact.png" width="50" height="50">
             </div>
 
             <div class="item-detail">
                 <div class="item-name">
-                    {{ chat[0].users[0].firstName }}
-                    {{ chat[0].users[0].lastName }}
+                    {{ chat.users[0].firstName }}
+                    {{ chat.users[0].lastName }}
                 </div>
                 <div class="item-last-msg">
-                    <div>{{ chat[0].msg[0].body }}</div>
-                    <div>{{ chat[0].msg[0].createdAt | date }}</div>
+                    <div>{{ chat.msg[0].body }}</div>
+                    <div>{{ chat.msg[0].createdAt | date }}</div>
                 </div>
             </div>
 

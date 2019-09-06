@@ -4,6 +4,7 @@ import { AuthenticatedService } from 'src/app/authenticated.service';
 
 
 import { Api } from '../../../../Api';
+import { MessageService } from '../../body-message/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { Api } from '../../../../Api';
 export class ChatService {
 
 
+  private dataLoaded: boolean = false;
   private _page: number;
   private _chats: ChatModel[] = [];
 
@@ -20,16 +22,19 @@ export class ChatService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthenticatedService
+    private authService: AuthenticatedService,
+    private msgService: MessageService
   ) { }
 
 
 
   loadChat(){
+    if(this.dataLoaded) return;
     this.http.get<ChatModel>(Api.entryPoint+'messages', Api.httpOptions).toPromise()
     .then( res => {
-      this._chats.push(res);
-      console.log(this.chats);
+      this._chats = this._chats.concat(res);
+      this.dataLoaded = true;
+      this.msgService.initMessage(this.chats[0].users[0]._id);
     }).catch( err => {
       console.log(err);
     })

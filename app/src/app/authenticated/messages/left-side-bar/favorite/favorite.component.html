@@ -2,7 +2,7 @@
         <h4>Favorites</h4>
             <div class="items">
                 <!--sfq -->
-                <div *ngFor="let fav of favoriteService.favorites" class="item">
+                <div *ngFor="let fav of favoriteService.favorites"  (click)="loadMessageBody(fav._id)" class="item">
                     <div class="item-image">
                         <img src="/assets/icons/contact.png" width="50" height="50">
                     </div>

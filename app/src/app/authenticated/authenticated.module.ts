@@ -5,6 +5,7 @@ import { AuthenticatedComponent } from './authenticated.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MessagesModule } from './messages/messages.module';
 import { SettingComponent } from './setting/setting.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   declarations: [AuthenticatedComponent, NavbarComponent, SettingComponent ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [

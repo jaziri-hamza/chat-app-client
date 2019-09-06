@@ -7,149 +7,36 @@
 
     <div class="body">
 
-        <div class="message">
-            <div class="message-rcv">
+        <div *ngFor="let msg of messageService.messages; let i = index"   class="message">
+            <div [ngClass]="{'message-rcv': userId!=msg._id._id, 'message-send': userId==msg._id._id}">
 
-                <div class="message-sender">
+                <div  *ngIf="i==0 || (i>0 && msg._id._id != messageService.messages[i-1]._id._id)" class="message-sender">
                     <img src="/assets/icons/contact.png" width="30" height="30" alt="qsdf">
                 </div>
-                <div class="message-body">
-                    <span>message body message body</span>
-                    <span>message body message body</span>
+                <div  class="message-body">
+                    <span> {{msg.body}} </span>
                 </div>
+                
                 <div class="message-date">
-                    10/20/2019 13:12
+                    {{msg.createdAt}}
                 </div>
                 
             </div>
             
         </div>
 
-        <div class="message">
-            <div class="message-send">
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30">
-                </div>
-                <div class="message-body">
-                    <span>message body msgfs sdfg sdfg sdf gsd gsd gsdfg sd sdfg sdfg sdg sdfg essage body</span>
-                    <span>message body message body</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-            </div>
-        </div>
-
-        <!-- delete-->
-        <div class="message">
-            <div class="message-rcv">
-
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30" alt="qsdf">
-                </div>
-                <div class="message-body">
-                    <span>message body message body</span>
-                    <span>message body message body</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-                
-            </div>
-            
-        </div>
-
-        <div class="message">
-            <div class="message-send">
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30">
-                </div>
-                <div class="message-body">
-                    <span>message body msgfs sdfg sdfg sdf gsd gsd gsdfg sd sdfg sdfg sdg sdfg essage body</span>
-                    <span>message body message body</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-            </div>
-        </div>
-        <div class="message">
-            <div class="message-rcv">
-
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30" alt="qsdf">
-                </div>
-                <div class="message-body">
-                    <span>message body message body</span>
-                    <span>message body message body</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-                
-            </div>
-            
-        </div>
-
-        <div class="message">
-            <div class="message-send">
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30">
-                </div>
-                <div class="message-body">
-                    <span>message body msgfs sdfg sdfg sdf gsd gsd gsdfg sd sdfg sdfg sdg sdfg essage body</span>
-                    <span>message body message body</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-            </div>
-        </div>
-        <div class="message">
-            <div class="message-rcv">
-
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30" alt="qsdf">
-                </div>
-                <div class="message-body">
-                    <span>message body message body</span>
-                    <span>message body message body</span>
-                    <span>message bod</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-                
-            </div>
-            
-        </div>
-
-        <div class="message">
-            <div class="message-send">
-                <div class="message-sender">
-                    <img src="/assets/icons/contact.png" width="30" height="30">
-                </div>
-                <div class="message-body">
-                    <span>message body msgfs sdfg sdfg sdf gsd gsd gsdfg sd sdfg sdfg sdg sdfg essage body</span>
-                    <span>message body message body</span>
-                </div>
-                <div class="message-date">
-                    10/20/2019 13:12
-                </div>
-            </div>
-        </div>
-        <!-- delete -->
+       
 
 
     </div>
 
-    <div class="footer">
+    <form [formGroup]="form" class="footer" (submit)="sendMessage()">
         <div>
-            <textarea placeholder="Write a message ..."></textarea>
+            <textarea formControlName="body" placeholder="Write a message ..."></textarea>
         </div>
         <div>
             <button>Send</button>
         </div>
-    </div>
+    </form>
 
 </div>

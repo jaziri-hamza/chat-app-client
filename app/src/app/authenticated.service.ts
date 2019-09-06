@@ -15,7 +15,7 @@ export class AuthenticatedService {
   private _errorLogin: boolean;
   
   private _token: string;
-  private _user: object;
+  private _user: UserDecode;
   private _isLogged: boolean;
 
 
@@ -39,6 +39,7 @@ export class AuthenticatedService {
       return;
     try{
       this._user =  jwt(this.token);
+      console.log("user ");
       console.log(this.user);
     }catch(err){
       console.log(err);
@@ -83,4 +84,13 @@ export class AuthenticatedService {
 
 
 
+}
+
+class UserDecode{
+  exp: Number;
+  firstName: string;
+  iat: number;
+  id: string;
+  lastName: string;
+  username: string;
 }

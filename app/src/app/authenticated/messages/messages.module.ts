@@ -9,6 +9,7 @@ import { ChatComponent } from './left-side-bar/chat/chat.component';
 import { ContactComponent } from './left-side-bar/contact/contact.component';
 import { FavoriteComponent } from './left-side-bar/favorite/favorite.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [
