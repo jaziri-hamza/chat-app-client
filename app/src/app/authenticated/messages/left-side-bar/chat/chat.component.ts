@@ -23,8 +23,8 @@ export class ChatComponent implements OnInit {
   }
 
 
-  loadMessageBody(id:string){
-    this.messageService.initMessage(id);
+  loadMessageBody(id:string, name: string){
+    this.messageService.initMessage(id, name);
   }
 
 

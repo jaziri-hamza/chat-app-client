@@ -40,6 +40,13 @@ export class ContactService {
     this._contacts[index].favorite = !this._contacts[index].favorite;
   }
 
+
+
+  clear(){
+    this._contacts = [];
+    this.dataLoaded = false;
+  }
+
  
 
 

@@ -23,7 +23,9 @@ export class ChatService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticatedService,
-    private msgService: MessageService
+    private msgService: MessageService,
+    
+
   ) { }
 
 
@@ -34,10 +36,21 @@ export class ChatService {
     .then( res => {
       this._chats = this._chats.concat(res);
       this.dataLoaded = true;
-      this.msgService.initMessage(this.chats[0].users[0]._id);
+      this.msgService.initMessage(this.chats[0].users[0]._id, this.chats[0].users[0].firstName+' '+ this.chats[0].users[0].lastName);
     }).catch( err => {
       console.log(err);
     })
+  }
+
+  update(obj){
+    this._chats.push(obj);
+    console.log(this._chats);
+  }
+
+  clear(){
+    this._chats = [];
+    this._page = null;
+    this.dataLoaded = false;
   }
 
 }
