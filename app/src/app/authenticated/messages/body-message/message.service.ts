@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Api } from 'src/app/Api';
 import { AuthenticatedService } from 'src/app/authenticated.service';
-import { userInfo } from 'os';
 import { ChatService } from '../left-side-bar/chat/chat.service';
 import { UpdatechatService } from '../left-side-bar/chat/updatechat.service';
 
@@ -20,7 +19,7 @@ export class MessageService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticatedService,
-    private updateChatService: UpdatechatService,
+    // private updateChatService: UpdatechatService,
   ) { }
 
 
@@ -63,10 +62,12 @@ export class MessageService {
   ];
    */
 
-  sendMessage(body){
-    this.http.post(Api.entryPoint+'messages/'+this._currentUserId, body, Api.httpOptions)
+  async sendMessage(body){
+    return await this.http.post(Api.entryPoint+'messages/'+this._currentUserId, body, Api.httpOptions)
     .toPromise().then(res=>{
-      const chatMessage = {
+      let chatMessage = {
+        status: 1,
+        result: {
         msg: [{
           body: body.body,
           createdAt: new Date(),
@@ -82,15 +83,17 @@ export class MessageService {
             firstName: this._currentUserName.split(' ')[0],
             lastName: this._currentUserName.split(' ')[1]
           }
-        ]
+        ]}
       };
       if(this._messages.length == 0){
-        this.updateChatService.updateChatService(chatMessage);
+        chatMessage.status = 1;
       }else{
-
+        chatMessage.status  = 0;
       }
+      
       this._messages = this._messages.concat(this.creatMessageObject(body.body));
       console.log(this._messages);
+      return chatMessage;
     }).catch(err=>{
       console.log(err);
     });

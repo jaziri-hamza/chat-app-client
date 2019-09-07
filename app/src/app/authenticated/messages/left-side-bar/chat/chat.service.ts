@@ -43,8 +43,14 @@ export class ChatService {
   }
 
   update(obj){
-    this._chats.push(obj);
-    console.log(this._chats);
+    if(obj.status == 1){
+      this._chats.unshift(obj.result);
+    }else{
+      //another
+      const indexEle = this._chats.findIndex(ele=> { return ele.users[0]._id == obj.result.users[0]._id });
+      this._chats[indexEle] = obj.result;
+    }
+    console.log(obj);
   }
 
   clear(){
