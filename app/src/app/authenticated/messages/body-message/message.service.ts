@@ -4,6 +4,7 @@ import { Api } from 'src/app/Api';
 import { AuthenticatedService } from 'src/app/authenticated.service';
 import { ChatService } from '../left-side-bar/chat/chat.service';
 import { UpdatechatService } from '../left-side-bar/chat/updatechat.service';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class MessageService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticatedService,
+    private socket: Socket
     // private updateChatService: UpdatechatService,
   ) { }
 
@@ -63,6 +65,7 @@ export class MessageService {
    */
 
   async sendMessage(body){
+    this.socket.emit('user-data', body);
     return await this.http.post(Api.entryPoint+'messages/'+this._currentUserId, body, Api.httpOptions)
     .toPromise().then(res=>{
       let chatMessage = {
