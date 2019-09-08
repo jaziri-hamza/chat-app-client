@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import * as jwt from 'jwt-decode';
+import { SocketIOService } from './authenticated/socket.io.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +29,12 @@ export class AuthenticatedService {
 
   constructor(
     private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private socketIO: SocketIOService
   ) { 
     this.initToken();
     this.decodeJWT();
+    this.socketIO.authentificated({'id': this.user.id});
   }
 
   decodeJWT(){
@@ -39,8 +42,6 @@ export class AuthenticatedService {
       return;
     try{
       this._user =  jwt(this.token);
-      console.log("user ");
-      console.log(this.user);
     }catch(err){
       console.log(err);
     }
@@ -63,6 +64,8 @@ export class AuthenticatedService {
       this._token = res.token;
       localStorage.setItem('token', this.token);
       this.decodeJWT();
+      this.socketIO.authentificated({'id': this.user.id});
+      // this.socketIO.pullMsg();
       this.route.navigateByUrl('/messages');
     }).catch( err =>{
       this._errorLogin = true;
@@ -71,6 +74,7 @@ export class AuthenticatedService {
 
 
   logout(){
+    this.socketIO.unauthentificated({'id': this.user.id});
     localStorage.removeItem('token');
     this._token = null;
     this._isLogged = null;

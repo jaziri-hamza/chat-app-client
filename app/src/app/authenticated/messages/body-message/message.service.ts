@@ -5,6 +5,7 @@ import { AuthenticatedService } from 'src/app/authenticated.service';
 import { ChatService } from '../left-side-bar/chat/chat.service';
 import { UpdatechatService } from '../left-side-bar/chat/updatechat.service';
 import { Socket } from 'ngx-socket-io';
+import { SocketIOService } from '../../socket.io.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class MessageService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticatedService,
-    private socket: Socket
+    private socketIO: SocketIOService,
+    // private socket: Socket
     // private updateChatService: UpdatechatService,
   ) { }
 
@@ -65,7 +67,11 @@ export class MessageService {
    */
 
   async sendMessage(body){
-    this.socket.emit('user-data', body);
+    // this.socket.emit('user-data', body);
+    let socketData  = {
+      user: this._currentUserId,
+      msg: body
+    };
     return await this.http.post(Api.entryPoint+'messages/'+this._currentUserId, body, Api.httpOptions)
     .toPromise().then(res=>{
       let chatMessage = {
@@ -93,9 +99,20 @@ export class MessageService {
       }else{
         chatMessage.status  = 0;
       }
+      this.socketIO.pushMsg({
+        msg : {
+          body: body.body,
+          createdAt: new Date(),
+        },
+        user : {
+          sendToId: this._currentUserId,
+          sendById: this.authService.user.id
+        }
+      });
       
-      this._messages = this._messages.concat(this.creatMessageObject(body.body));
-      console.log(this._messages);
+      this._messages = this._messages.concat(this.creatMessageObject(body.body, null));
+      // send socketio
+
       return chatMessage;
     }).catch(err=>{
       console.log(err);
@@ -110,7 +127,16 @@ export class MessageService {
   }
 
 
-  creatMessageObject(body: string){
+  pushMessageObject(body: string, dataUser: any){
+    console.log(this._currentUserId);
+    console.log(dataUser._id);
+    if(this._currentUserId != dataUser._id) return;
+    this._messages = this._messages.concat(this.creatMessageObject(body, dataUser));
+  }
+
+
+  creatMessageObject(body: string, dataUser:any){
+    if(dataUser==null){
     const user = this.authService.user;
     let msg : Message = {
       body: body,
@@ -122,6 +148,18 @@ export class MessageService {
       createdAt: new Date()
     };
     return msg;
+    }else{
+      let msg : Message = {
+        body: body,
+        _id: {
+          firstName: dataUser.firstName,
+          lastName:dataUser.lastName,
+          _id: dataUser._id
+        },
+        createdAt: new Date()
+      };
+      return msg;
+    }
   }
 
 

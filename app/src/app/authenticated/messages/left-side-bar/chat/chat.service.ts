@@ -50,7 +50,33 @@ export class ChatService {
       const indexEle = this._chats.findIndex(ele=> { return ele.users[0]._id == obj.result.users[0]._id });
       this._chats[indexEle] = obj.result;
     }
+  }
+
+  /**
+   * {
+   *  msg [
+   *  {
+   *    body: ,
+   *    createdAt: ,
+   *    _id{
+   *        fn: 
+   *        lt:
+   *        _id:
+   *     }
+   *  }
+   * ],
+   * 
+   * }
+   */
+  updateSocket(obj){
     console.log(obj);
+    const indexEle = this._chats.findIndex(ele=> { return ele.users[0]._id == obj.users[0]._id });
+    if(indexEle>=0){
+      this._chats[indexEle] = obj;
+    }else{
+      this._chats.unshift(obj);
+    }
+
   }
 
   clear(){
