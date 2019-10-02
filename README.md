@@ -1,10 +1,16 @@
-# CHAT APP
+# REALTIME CHAT APP (Client)
+**Angular**
 
-this is a client side project created with angular
+
+This is a real-time chat app using NodeJS and Angular
+It’s accompanied with a NodeJs repo: [api app](https://gitlab.com/irizaj07/chat-app-api)
+
+
 
 ## HOW TO RUN PROJECT
 
+```
 Run `docker-compose up --build`
+```
+Navigate to `container-host:4200`Example `x.x.x.x:4200`
 
-
-Navigate to `container-host:4200`  Example `x.x.x.x:4200`
